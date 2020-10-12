@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* FORM */
+
+form{
+  border:2px solid black;
+  border-radius: 20px;
+  padding: 20px;
+  width: 30%;
+  margin-top: 80px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-form, .signup-form, .product-form{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.product-form label{
+  margin-right: 10px;
+} 
+
+.form-control{
+  border-radius: 20px;
+}
+
+label{
+  margin-left: 5px;
+}
+
+/* NAVBAR */
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  background: green;
+  height: 70px;
+  align-content: center;
+  
+}
+
+.logo{
+  width: 250px;
+  height: 50px;
+}
+
+.navbar a, .navbar h1{   
+  font-weight: 500;
+  font-size: 16px;
   color: white;
+  text-decoration: none;
+  margin-right: 60px;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.navbar a:hover{   
+text-decoration: none;
+color: black;
+transition: .5s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* BUTTON */
+
+.btn.btn-primary{
+  border-radius: 20px;
+  background: rgb(33, 129, 33);
+  border:none;
+}
+
+.btn.btn-primary:hover{
+  background-color: rgba(0, 128, 0, 0.788);
+}
+
+
+/* PRODUCT LIST*/
+
+
+.product{
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px auto;
+  background-color: rgb(248, 248, 248);
+  padding: 50px 0;
+  border-bottom: 1px solid rgb(177, 177, 177);
+}
+
+.ui.unstackable.items{
+  background-color: rgba(243, 243, 243, 0.486);
+  border-bottom: 1px rgba(128, 128, 128, 0.534) solid;
+  padding: 10px 0;
+}
+
+.product-list{
+  margin-top: 20px;
+}
+
+.product-info{
+  display: flex;
+}
+
+.meta{
+  padding:0 10px 0 0;
 }
