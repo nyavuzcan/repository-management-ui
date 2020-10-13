@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import Input from "../components/Input"
 import {addProduct} from "../api/ProductService"
+import axios from "axios"
 
 export default class AddProductPage extends Component {
 
     state = {
-        image:null,
-        product:null,
-        productNumber:null
+        name:null,
+        productNumber:null,
+        productImage:null,
+        imagePath:null
     }
 
     onChange = (e) => {
@@ -18,14 +20,35 @@ export default class AddProductPage extends Component {
         })
     }
 
+    handleImageChange = (e) => {
+        this.setState({
+          productImage: e.target.files[0]
+        })
+      };
+
     addProduct = (e) => {
         e.preventDefault();
-        let product = {product:this.state.product, productNumber:this.state.productNumber}
-        addProduct(product).then(response => 
+        let form_data = new FormData();
+        form_data.append('multipartFile', this.state.productImage);
+        let url = 'http://localhost:8080/product/fileUpload';
+        axios.post(url, form_data, {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+     })
+        .then(res => {
+            this.setState({
+                imagePath: res.data
+            })
+            let product = {name:this.state.name, productNumber:this.state.productNumber, imagePath:this.state.imagePath}
+            addProduct(product).then(response => 
             this.props.history.push("/")
             )
-            console.log(product)
-    }
+        })
+        
+        .catch(err => console.log(err))
+
+    };
 
     render() {
         return (
@@ -33,12 +56,12 @@ export default class AddProductPage extends Component {
             <form>
                 <h1 style={{textAlign:"center"}}>Add Product</h1>
                    
-                    <Input label="Pick an image" type="file"  className="" name="image" onChange={this.onChange}/>
-                    <Input label="Product name" type="text" className="form-control" name="product" onChange={this.onChange}/>
+                    <Input label="Pick an image" type="file" className="" name="productImage" onChange={this.handleImageChange}/>
+                    <Input label="Product name" type="text" className="form-control" name="name" onChange={this.onChange}/>
                     <Input label="Product number" type="text" className="form-control" name="productNumber" onChange={this.onChange}/>   
-                    <button class="ui primary button" onClick={this.addProduct}>
-                        Ekle
-                    </button>            
+                    <div className="button" style={{display:"flex",justifyContent:"center"}}>
+                        <button type="submit" className="btn btn-primary" onClick={this.addProduct}>Ekle</button>
+                    </div>          
             </form>
         </div>
         )

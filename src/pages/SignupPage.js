@@ -12,7 +12,6 @@ export default class SignupPage extends Component {
     }
 
     onChange = (e) => {
-        const {username,surname,password,passwordRepeat} = this.state
         const {name,value} = e.target
 
         this.setState({
