@@ -6,7 +6,10 @@ export default class UpdateProductPage extends Component {
     state = {
         id: this.props.match.params.id,
         name:null,
-        productNumber:null
+        productNumber:null,
+        imagePath:null,
+        entryDate:null,
+        exitDate:null
     }
 
     onChange = (e) => {
@@ -22,7 +25,10 @@ export default class UpdateProductPage extends Component {
             let product = response.data
             this.setState({
                 name: product.name,
-                productNumber: product.productNumber
+                productNumber: product.productNumber,
+                entryDate:product.entryDate,
+                imagePath:product.imagePath,
+                exitDate:product.exitDate
             })
             console.log(product)
         }          
@@ -31,8 +37,8 @@ export default class UpdateProductPage extends Component {
     
     updateProduct = (e) => { 
         e.preventDefault(); 
-        let product = {name: this.state.name, productNumber: this.state.productNumber}
-       updateProduct(this.state.id,product).then(response =>
+        let product = {id: this.state.id, name: this.state.name, productNumber: this.state.productNumber, entryDate: this.state.entryDate, exitDate:this.state.exitDate}
+       updateProduct(product).then(response =>
             this.props.history.push("/")
         )
         

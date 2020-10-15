@@ -8,17 +8,17 @@ export const addProduct = (body) => {
 }
 
 export const getProducts = () => {
-    return axios.get(PRODUCTS_API_URL+"/products")
+    return axios.get(PRODUCTS_API_URL+"/getProducts")
 }
 
 export const getProductById = (id) => {
-    return axios.get(PRODUCTS_API_URL+"/"+id)
+    return axios.get(PRODUCTS_API_URL+"/getProduct/"+id)
 }
 
 export const deleteProduct = (id) => {
-    return axios.post(PRODUCTS_API_URL+"/delete",id)
+    return axios.get(PRODUCTS_API_URL+"/delete/"+id)
 }
 
-export const updateProduct = (id,body) => {
-    return axios.put(PRODUCTS_API_URL+"/"+id,body)
+export const updateProduct = (body) => {
+    return axios.post(PRODUCTS_API_URL+"/update",body)
 }
