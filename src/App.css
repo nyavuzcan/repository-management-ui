@@ -124,6 +124,12 @@ transition: .6s;
 }
 
 
+/* PRODUCT IMAGE*/
+
+.ui.items>.item>.image{
+  margin-left: 20px;
+}
+
 /* SCROLL */
 ::-webkit-scrollbar {
   width: 15px;
@@ -140,3 +146,12 @@ transition: .6s;
   background: rgb(184, 238, 226);
   border-radius: 10px;
 }
+
+
+/* SEARCH BOX */
+
+.ui.category.search{
+  display: flex;
+  justify-content: center;
+}
+

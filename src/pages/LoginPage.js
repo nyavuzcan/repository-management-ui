@@ -10,7 +10,6 @@ export default class LoginPage extends Component {
     }
 
     onChange = (e) => {
-        const {username,surname,password} = this.state
         const {name,value} = e.target
 
         this.setState({

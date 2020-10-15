@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Input from "../components/Input"
 import {getProductById,updateProduct} from "../api/ProductService"
+import axios from "axios"
 
 export default class UpdateProductPage extends Component {
     state = {
@@ -9,7 +10,8 @@ export default class UpdateProductPage extends Component {
         productNumber:null,
         imagePath:null,
         entryDate:null,
-        exitDate:null
+        exitDate:null,
+        productImage:null,
     }
 
     onChange = (e) => {
@@ -37,12 +39,28 @@ export default class UpdateProductPage extends Component {
     
     updateProduct = (e) => { 
         e.preventDefault(); 
-        let product = {id: this.state.id, name: this.state.name, productNumber: this.state.productNumber, entryDate: this.state.entryDate, exitDate:this.state.exitDate}
-       updateProduct(product).then(response =>
-            this.props.history.push("/")
-        )
+        let form_data = new FormData();
+        form_data.append('file', this.state.productImage);
+        let url = 'http://localhost:8080/files';
+        axios.put(url, form_data, {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+     })
+        .then(res => {
+            this.setState({
+                imagePath: res.data.fileDownloadUri
+            })
+            let product = {id: this.state.id, name: this.state.name, productNumber: this.state.productNumber, imagePath: this.state.imagePath, entryDate: this.state.entryDate, exitDate:this.state.exitDate}
+            updateProduct(product).then(response =>
+                 this.props.history.push("/")
+             )
+        })
         
-    }
+        .catch(err => console.log(err))
+
+    };
+    
 
 
     render() {
@@ -50,13 +68,15 @@ export default class UpdateProductPage extends Component {
             <div className="product-form">
             <form>
                 <h1 style={{textAlign:"center"}}>Add Product</h1>
-                   
-                    <Input label="Pick an image" type="file" className="" name="image" onChange={this.onChange}/>
+                    <img src={this.state.imagePath} style={{width:"100px",height:"100px"}}/>
+                    <Input label="Pick an image" type="file" className="" name="imagePath"/>
                     <Input label="Product name" type="text" value={this.state.name} className="form-control" name="name" onChange={this.onChange}/>
                     <Input label="Product number" type="text" value={this.state.productNumber} className="form-control" name="productNumber" onChange={this.onChange}/>   
-                    <button className="ui primary button" onClick={this.updateProduct}>
+                    <div className="button" style={{display:"flex",justifyContent:"center"}}>
+                    <button className="btn btn-primary" onClick={this.updateProduct}>
                         Düzenle
                     </button>            
+                    </div>
             </form>
         </div>
         )

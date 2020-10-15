@@ -7,12 +7,14 @@ import UpdateProductPage from "./pages/UpdateProductPage"
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import ProductsList from './components/ProductsList';
 
+
 function App(props) {
   return (
     <div>
 
     <Router> 
     <Navbar/> 
+    
       <div className="container">
           <Route exact path="/" component={ProductsList}/>
           <Route exact path="/products" component={ProductsList}/>

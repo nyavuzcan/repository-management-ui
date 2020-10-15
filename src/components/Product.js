@@ -11,7 +11,7 @@ export default function Product(props) {
                 <div className="item" style={{marginTop:"20px"}}>
                  
                     <div className="image">
-                        <img src={imagePath} alt={"no"} />
+                        <img src={imagePath} alt={"no"} style={{borderRadius:"10px"}}/>
                     </div>
                     <div className="content">
                     <a className="header">{name}</a>

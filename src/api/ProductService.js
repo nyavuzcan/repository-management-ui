@@ -22,3 +22,9 @@ export const deleteProduct = (id) => {
 export const updateProduct = (body) => {
     return axios.post(PRODUCTS_API_URL+"/update",body)
 }
+
+export const searchProduct = (productName) => {
+    console.log(productName)
+    return axios.get(PRODUCTS_API_URL+"/search/"+productName)
+
+}

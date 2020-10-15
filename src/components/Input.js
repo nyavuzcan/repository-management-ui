@@ -7,7 +7,7 @@ export default function Input(props) {
     return (
                  <div className="form-group">
                     <label>{label}</label>
-                    <input type={type} className={className} value={value} name={name} onChange={onChange}/>
+                    <input type={type} className={className} value={value} name={name} onChange={onChange} required/>
                 </div>    
     )
 }
