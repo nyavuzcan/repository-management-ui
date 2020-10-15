@@ -29,16 +29,16 @@ export default class AddProductPage extends Component {
     addProduct = (e) => {
         e.preventDefault();
         let form_data = new FormData();
-        form_data.append('multipartFile', this.state.productImage);
-        let url = 'http://localhost:8080/product/fileUpload';
-        axios.post(url, form_data, {
+        form_data.append('file', this.state.productImage);
+        let url = 'http://localhost:8080/files';
+        axios.put(url, form_data, {
         headers: {
             'content-type': 'multipart/form-data'
         }
      })
         .then(res => {
             this.setState({
-                imagePath: res.data
+                imagePath: res.data.fileDownloadUri
             })
             let product = {name:this.state.name, productNumber:this.state.productNumber, imagePath:this.state.imagePath}
             addProduct(product).then(response => 
