@@ -22,6 +22,35 @@ export default class UpdateProductPage extends Component {
         })
     }
 
+    handleImageChange = (e) => {
+        e.preventDefault();
+        this.setState({
+            productImage: e.target.files[0]
+        }, () => {
+
+            let form_data = new FormData();
+            form_data.append('file', this.state.productImage);
+            let url = 'http://localhost:8080/files';
+
+            axios.put(url, form_data, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
+                .then(res => {
+                    this.setState({
+                        imagePath: res.data.fileDownloadUri
+                    })
+                })
+
+                .catch(err => console.log(err))
+        })
+
+
+
+
+    };
+
     componentDidMount(){
         getProductById(this.state.id).then(response => {
             let product = response.data
@@ -32,48 +61,32 @@ export default class UpdateProductPage extends Component {
                 imagePath:product.imagePath,
                 exitDate:product.exitDate
             })
-            console.log(product)
         }          
     )
     }
     
     updateProduct = (e) => { 
-        e.preventDefault(); 
-        let form_data = new FormData();
-        form_data.append('file', this.state.productImage);
-        let url = 'http://localhost:8080/files';
-        axios.put(url, form_data, {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-     })
-        .then(res => {
-            this.setState({
-                imagePath: res.data.fileDownloadUri
-            })
-            let product = {id: this.state.id, name: this.state.name, productNumber: this.state.productNumber, imagePath: this.state.imagePath, entryDate: this.state.entryDate, exitDate:this.state.exitDate}
-            updateProduct(product).then(response =>
-                 this.props.history.push("/")
-             )
-        })
-        
-        .catch(err => console.log(err))
-
+        e.preventDefault();
+        let product = {id: this.state.id, name: this.state.name, productNumber: this.state.productNumber,
+            imagePath: this.state.imagePath, entryDate: this.state.entryDate, exitDate:this.state.exitDate}
+        updateProduct(product).then(response =>
+            this.props.history.push("/")
+        )
     };
     
 
 
     render() {
         return (
-            <div className="product-form">
+            <div className="product-form" onSubmit={e=>this.updateProduct(e)}>
             <form>
-                <h1 style={{textAlign:"center"}}>Add Product</h1>
+                <h1 style={{textAlign:"center"}}>Edit Product</h1>
                     <img src={this.state.imagePath} style={{width:"100px",height:"100px"}}/>
-                    <Input label="Pick an image" type="file" className="" name="imagePath"/>
-                    <Input label="Product name" type="text" value={this.state.name} className="form-control" name="name" onChange={this.onChange}/>
-                    <Input label="Product number" type="text" value={this.state.productNumber} className="form-control" name="productNumber" onChange={this.onChange}/>   
+                    <Input label="Pick an image" type="file"   name="productImage" onChange={this.handleImageChange} required={false}/>
+                    <Input label="Product name"  required={true} type="text" value={this.state.name} className="form-control" name="name" onChange={this.onChange} />
+                    <Input label="Product number"  required={true} type="text" value={this.state.productNumber} className="form-control" name="productNumber" onChange={this.onChange} />
                     <div className="button" style={{display:"flex",justifyContent:"center"}}>
-                    <button className="btn btn-primary" onClick={this.updateProduct}>
+                    <button className="btn btn-primary" type="submit">
                         Düzenle
                     </button>            
                     </div>

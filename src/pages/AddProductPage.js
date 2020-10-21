@@ -55,9 +55,9 @@ export default class AddProductPage extends Component {
             <div className="product-form" onSubmit={e=>this.addProduct(e)}>
             <form >
                 <h1 style={{textAlign:"center"}}>Add Product</h1>
-                    <Input label="Pick an image" type="file" className="" name="productImage" onChange={this.handleImageChange} required='required'/>
-                    <Input label="Product name" type="text" className="form-control" name="name" onChange={this.onChange} required='required'/>
-                    <Input label="Product number" type="text" className="form-control" name="productNumber" onChange={this.onChange} required='required'/>
+                    <Input label="Pick an image" type="file" className="" name="productImage" onChange={this.handleImageChange} required={true}/>
+                    <Input label="Product name" type="text" className="form-control" name="name" onChange={this.onChange} required={true}/>
+                    <Input label="Product number" type="text" className="form-control" name="productNumber" onChange={this.onChange} required={true}/>
                     <div className="button" style={{display:"flex",justifyContent:"center"}}>
                         <button type="submit" className="btn btn-primary" >Ekle</button>
                     </div>          
