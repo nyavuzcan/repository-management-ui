@@ -24,7 +24,7 @@ export default class SignupPage extends Component {
             <div className="signup-form">
             <form>
                 <h1 style={{textAlign:"center"}}>Sign up</h1> 
-                <Input label="Name" type="text" name="username" className="form-control" onChange={this.onChange}/>
+                <Input label="Name" type="text" name="userName" className="form-control" onChange={this.onChange}/>
                 <Input label="Surname" type="text" name="surname" className="form-control" onChange={this.onChange}/>
                 <Input label="Password" type="password" name="password" className="form-control" onChange={this.onChange}/>
                 <Input label="Password repeat" type="password" name="passwordRepeat" className="form-control" onChange={this.onChange}/>

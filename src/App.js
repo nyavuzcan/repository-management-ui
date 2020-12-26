@@ -1,30 +1,28 @@
 import React from 'react';
-import './App.css';
-import Navbar from "./components/Navbar"
-import LoginPage from "./pages/LoginPage"
-import AddProductPage from "./pages/AddProductPage"
-import UpdateProductPage from "./pages/UpdateProductPage"
-import {BrowserRouter as Router, Route} from "react-router-dom"
-import ProductsList from './components/ProductsList';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { Layout } from 'antd';
+import Home from "./components/Home";
+import LoginForm from "./pages/LoginForm";
+import About from "./components/authComponents/About";
+import NavigationBar from "./components/authComponents/NavigationBar";
+import PrivateRoute from "./components/authComponents/PrivateRoute";
 
-function App(props) {
-  return (
-    <div>
-
-    <Router> 
-    <Navbar/> 
-    
-      <div className="container">
-          <Route exact path="/" component={ProductsList}/>
-          <Route exact path="/products" component={ProductsList}/>
-          <Route exact path="/login" component={LoginPage}/> 
-          <Route exact path="/add-product" component={AddProductPage}/>           
-          <Route exact path="/update-product/:id" component={UpdateProductPage}/>     
-      </div>
-      </Router>
-    </div>
-  );
+const App = (props) => {
+    return (
+        <Router>
+            <div>
+                <Layout>
+                    <NavigationBar />
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/account/login" component={LoginForm} />
+                        <PrivateRoute path="/about" component={About} />
+                    </Switch>
+                </Layout>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
