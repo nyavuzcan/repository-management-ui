@@ -45,6 +45,7 @@ import {connect} from "react-redux";
             })
 
             dispatch(signup(name,lastname,email, username,password));
+            this.props.history.push("/login")
         }
 
     }

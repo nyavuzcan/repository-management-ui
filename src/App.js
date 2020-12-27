@@ -9,6 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import ProductsList from "./components/ProductsList";
 import AddProductPage from "./pages/AddProductPage";
 import SignupPage from "./pages/SignupPage";
+import UpdateProductPage from "./pages/UpdateProductPage";
 
 const App = (props) => {
     return (
@@ -22,6 +23,7 @@ const App = (props) => {
                         <Route exact path="/sign-up" component={SignupPage}/>
                         <PrivateRoute exact path="/products" component={ProductsList}/>
                         <PrivateRoute exact path="/add-product" component={AddProductPage}/>
+                        <PrivateRoute exact path="/update-product/:id" component={UpdateProductPage}/>
                     </Switch>
                 </Layout>
             </div>

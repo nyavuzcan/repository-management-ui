@@ -42,11 +42,12 @@ export default class AddProductPage extends Component {
             })
             let product = {name:this.state.name, productNumber:this.state.productNumber, imagePath:this.state.imagePath}
             addProduct(product).then(response => 
-            this.props.history.push("/")
+            this.props.history.push("/products")
             )
         })
         
         .catch(err => console.log(err))
+
 
     };
 

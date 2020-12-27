@@ -24,7 +24,7 @@ const login = (username, password) => {
             //if there is user (user.data.status =true )
 
             if (user.data.jwt){
-                const  token  =user.data.jwt;
+                let  token  =user.data.jwt;
                 localStorage.setItem("jwtToken", token);
                 setAuthorizationToken(token);
             }

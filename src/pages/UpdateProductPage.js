@@ -46,9 +46,6 @@ export default class UpdateProductPage extends Component {
                 .catch(err => console.log(err))
         })
 
-
-
-
     };
 
     componentDidMount(){
@@ -70,11 +67,9 @@ export default class UpdateProductPage extends Component {
         let product = {id: this.state.id, name: this.state.name, productNumber: this.state.productNumber,
             imagePath: this.state.imagePath, entryDate: this.state.entryDate, exitDate:this.state.exitDate}
         updateProduct(product).then(response =>
-            this.props.history.push("/")
+            this.props.history.push("/products")
         )
     };
-    
-
 
     render() {
         return (

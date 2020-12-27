@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import {Image} from "antd";
+import axios from "axios";
 
 export default function Product(props) {
 
     const {imagePath,name,entryDate,exitDate,productNumber,updateProduct,deleteProduct} = props
-        console.log(imagePath)
+
     return (
            <div className="product">
                 <div className="ui unstackable items">
