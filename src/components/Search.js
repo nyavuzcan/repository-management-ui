@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {searchProduct,getProducts} from "../api/ProductService"
+import {searchProduct,getProducts} from "../services/ProductService"
 
 
 export default class Search extends Component {

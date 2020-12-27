@@ -18,6 +18,19 @@ const loginError = error =>{
     };
 };
 
+
+export const signup = (name,lastname, email,username, password) => {
+    return dispatch => {
+        authService.signup(name,lastname,email,username, password)
+            .then(data => {
+                data
+                    ?(dispatch(loginSuccess(data)))
+                    :  dispatch(loginError(data))
+            })
+            .catch(err => dispatch(loginError(err)));
+    }
+}
+
 export const login = (userName, password) => {
     return dispatch => {
         authService.login(userName, password)

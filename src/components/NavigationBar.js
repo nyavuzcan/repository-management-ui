@@ -1,8 +1,12 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { Link } from "react-router-dom";
+import {Link, Switch} from "react-router-dom";
 import { connect } from "react-redux";
 import jwtDecode from 'jwt-decode';
+import PrivateRoute from "./PrivateRoute";
+import ProductsList from "./ProductsList";
+import AddProductPage from "../pages/AddProductPage";
+import UpdateProductPage from "../pages/UpdateProductPage";
 
 const { Header } = Layout;
 
@@ -25,8 +29,10 @@ class NavigationBar extends React.Component {
                     mode="horizontal"
                     style={{ lineHeight: '64px' }} >
                     <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
-                    { username ? <Menu.Item style={{ float: "right" }} key="2"><Link to="/account/login">Logout - { username }</Link></Menu.Item> : <Menu.Item style={{ float: "right" }} key="2"><Link to="/account/login">Login</Link></Menu.Item> }
-                    <Menu.Item key="3"><Link to="/about">About</Link></Menu.Item>
+                    { username ? <Menu.Item style={{ float: "right" }} key="2"><Link to="/login">Logout - { username }</Link></Menu.Item> : <Menu.Item style={{ float: "right" }} key="2"><Link to="/login">Login</Link></Menu.Item> }
+                    { !username ?  <Menu.Item style={{ float: "right" }} key="3"><Link to="/sign-up">Sign-up</Link></Menu.Item> : null}
+                    { username ?  <Menu.Item key="4"><Link to="/products">Products</Link></Menu.Item> : null}
+                    { username ?  <Menu.Item key="5"><Link to="/add-product">Add Product</Link></Menu.Item> : null}
                 </Menu>
             </Header>
         )

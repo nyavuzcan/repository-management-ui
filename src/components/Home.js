@@ -1,7 +1,10 @@
 import React from 'react';
 
 const Home = (props) => (
-    <div>You are in Home page and this page is public</div>
+    <div>
+        <h1>Welcome to Repo</h1>
+
+    </div>
 );
 
 export default Home;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {getProducts, deleteProduct,searchProduct} from "../api/ProductService"
+import {getProducts, deleteProduct,searchProduct} from "../services/ProductService"
 import Product from "./Product"
 import Search from "./Search"
 

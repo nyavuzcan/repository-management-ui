@@ -1,7 +1,19 @@
 import axios from 'axios';
 import { setAuthorizationToken } from '../helpers/setAuthorizationToken';
 
+const signup = (name,lastname,email,username, password) => {
+    return axios.post("http://localhost:8080/authenticate/register",
+        {
+            name:name, lastname: lastname, email:email ,username:username, password:password
+        })
+        .then(rs =>{
+            if (rs.data){
+            }
+            return "Check Your Email For Verify"
+        })
+        . catch(err => console.log('Signup Error :'+err))
 
+}
 const login = (username, password) => {
     return axios.post("http://localhost:8080/authenticate/verify",
         {
@@ -26,4 +38,4 @@ const logout = () => {
     setAuthorizationToken(false);
 }
 
-export default {login, logout};
+export default {login, logout, signup};

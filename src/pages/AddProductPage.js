@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Input from "../components/Input"
-import {addProduct} from "../api/ProductService"
+import {addProduct} from "../services/ProductService"
 import axios from "axios"
 
 export default class AddProductPage extends Component {

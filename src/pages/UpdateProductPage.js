@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Input from "../components/Input"
-import {getProductById,updateProduct} from "../api/ProductService"
+import {getProductById,updateProduct} from "../services/ProductService"
 import axios from "axios"
 
 export default class UpdateProductPage extends Component {

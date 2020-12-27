@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import Home from "./components/Home";
 import LoginForm from "./pages/LoginForm";
-import About from "./components/authComponents/About";
-import NavigationBar from "./components/authComponents/NavigationBar";
-import PrivateRoute from "./components/authComponents/PrivateRoute";
+import NavigationBar from "./components/NavigationBar";
+import PrivateRoute from "./components/PrivateRoute";
+import ProductsList from "./components/ProductsList";
+import AddProductPage from "./pages/AddProductPage";
+import SignupPage from "./pages/SignupPage";
 
 const App = (props) => {
     return (
@@ -16,8 +18,10 @@ const App = (props) => {
                     <NavigationBar />
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route path="/account/login" component={LoginForm} />
-                        <PrivateRoute path="/about" component={About} />
+                        <Route exact path="/login" component={LoginForm}/>
+                        <Route exact path="/sign-up" component={SignupPage}/>
+                        <PrivateRoute exact path="/products" component={ProductsList}/>
+                        <PrivateRoute exact path="/add-product" component={AddProductPage}/>
                     </Switch>
                 </Layout>
             </div>
